@@ -2,5 +2,8 @@
 
     <string name="app_name">KanColleTimerLite</string>
     <string name="gcm_sender_id">424903963924</string>
+    <string name="fleet_2">Fleet 2</string>
+    <string name="fleet_3">Fleet 3</string>
+    <string name="fleet_4">Fleet 4</string>
 
 </resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">艦これタイマーLite</string>
+    <string name="fleet_2">第2艦隊</string>
+    <string name="fleet_3">第3艦隊</string>
+    <string name="fleet_4">第4艦隊</string>
+    
+</resources>
