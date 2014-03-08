@@ -1,7 +1,6 @@
 package jp.miku39.android.kancolletimerlite;
 
 import android.app.IntentService;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -49,7 +48,9 @@ public class GcmIntentService extends IntentService {
 				// If it's a regular GCM message, do some work.
 			} else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE
 					.equals(messageType)) {
+
 				// This loop represents the service doing some work.
+				// TODO プッシュ通知の受信処理を行う
 
 				Log.i(TAG, "Completed work @ " + SystemClock.elapsedRealtime());
 				// Post notification of received message.
