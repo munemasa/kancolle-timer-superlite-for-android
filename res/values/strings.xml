@@ -5,5 +5,13 @@
     <string name="fleet_2">Fleet 2</string>
     <string name="fleet_3">Fleet 3</string>
     <string name="fleet_4">Fleet 4</string>
+    <string name="dock_1">Dock 1</string>
+    <string name="dock_2">Dock 2</string>
+    <string name="dock_3">Dock 3</string>
+    <string name="dock_4">Dock 4</string>
+    <string name="set">Set</string>
+    <string name="expedition">Expedition</string>
+    <string name="repair">Repair</string>
+    <string name="docking">Docking</string>
 
 </resources>

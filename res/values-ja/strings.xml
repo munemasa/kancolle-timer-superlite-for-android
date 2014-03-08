@@ -5,5 +5,13 @@
     <string name="fleet_2">第2艦隊</string>
     <string name="fleet_3">第3艦隊</string>
     <string name="fleet_4">第4艦隊</string>
-    
+    <string name="dock_1">ドック1</string>
+    <string name="dock_2">ドック2</string>
+    <string name="dock_3">ドック3</string>
+    <string name="dock_4">ドック4</string>
+    <string name="set">セット</string>
+    <string name="expedition">遠征</string>
+    <string name="repair">修復</string>
+    <string name="docking">入渠</string>
+
 </resources>
