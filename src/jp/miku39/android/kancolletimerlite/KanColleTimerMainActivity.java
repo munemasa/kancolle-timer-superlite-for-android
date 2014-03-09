@@ -2,7 +2,6 @@ package jp.miku39.android.kancolletimerlite;
 
 import java.util.Calendar;
 
-import jp.miku39.android.kancolletimerlite.R.id;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -10,11 +9,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class KanColleTimerMainActivity extends Activity {
 	final static String TAG = "KanColleTimerMainActivity";
@@ -118,7 +117,7 @@ public class KanColleTimerMainActivity extends Activity {
 
 	void setRemainTime(int n) {
 		long t = (System.currentTimeMillis() + 5000) / 1000;
-		setAlarm(t);
+		setAlarm(this, t, n);
 		createCountDownTimer(n, 10);
 	}
 
@@ -127,10 +126,11 @@ public class KanColleTimerMainActivity extends Activity {
 	 * 
 	 * @param t
 	 */
-	void setAlarm(long t) {
-		Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
-		PendingIntent sender = PendingIntent.getBroadcast(
-				getApplicationContext(), 0, intent, 0);
+	static void setAlarm(Context context, long t, int n) {
+		Intent intent = new Intent(context, AlarmReceiver.class);
+		intent.setAction("timer-" + n);
+		PendingIntent sender = PendingIntent
+				.getBroadcast(context, 0, intent, 0);
 
 		long now = System.currentTimeMillis();
 		long target = t * 1000;
@@ -140,12 +140,12 @@ public class KanColleTimerMainActivity extends Activity {
 		calendar.setTimeInMillis(System.currentTimeMillis());
 		calendar.add(Calendar.SECOND, (int) diff);
 
-		AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+		AlarmManager am = (AlarmManager) context
+				.getSystemService(Context.ALARM_SERVICE);
 		// one shot
-		alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-				sender);
+		am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
 
-		Toast.makeText(this, "Start Alarm!", Toast.LENGTH_SHORT).show();
+		Log.d(TAG, "Start Alarm!");
 	}
 
 }

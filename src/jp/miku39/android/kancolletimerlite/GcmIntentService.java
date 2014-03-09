@@ -2,14 +2,10 @@ package jp.miku39.android.kancolletimerlite;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import jp.miku39.android.common.Lib;
 import net.arnx.jsonic.JSON;
-import android.app.AlarmManager;
 import android.app.IntentService;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -65,7 +61,7 @@ public class GcmIntentService extends IntentService {
 								tmp);
 
 						if (tmp > now) {
-							setAlarm(tmp, i);
+							KanColleTimerMainActivity.setAlarm(this, tmp, i);
 						}
 					}
 				} catch (Exception e) {
@@ -75,32 +71,6 @@ public class GcmIntentService extends IntentService {
 		}
 		// Release the wake lock provided by the WakefulBroadcastReceiver.
 		GcmBroadcastReceiver.completeWakefulIntent(intent);
-	}
-
-	/**
-	 * アラーム時刻をUNIX時間で指定する。
-	 * 
-	 * @param t
-	 *            アラームを鳴らす時刻をUNIX時間で。
-	 * @param n
-	 */
-	void setAlarm(long t, int n) {
-		Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
-		intent.setAction("timer-"+n);
-		PendingIntent sender = PendingIntent.getBroadcast(
-				getApplicationContext(), 0, intent, 0);
-
-		long now = System.currentTimeMillis();
-		long target = t * 1000;
-		long diff = (target - now) / 1000;
-
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis(System.currentTimeMillis());
-		calendar.add(Calendar.SECOND, (int) diff);
-
-		AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-		// one shot
-		am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
 	}
 
 }

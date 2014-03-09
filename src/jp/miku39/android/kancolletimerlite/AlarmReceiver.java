@@ -7,8 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
-import android.widget.Toast;
 
 public class AlarmReceiver extends BroadcastReceiver {
 	final static String TAG = "AlarmReceiver";
@@ -20,7 +18,28 @@ public class AlarmReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		vibrate(context);
-		sendNotification(context, "完了しました。");
+
+		// AlarmのActionは"timer-X"となっている
+		String action = intent.getAction();
+		String number = action.substring("timer-".length());
+
+		String msg;
+		int n = Integer.parseInt(number, 10);
+		switch (n) {
+		case 0:
+			msg = "第2艦隊が遠征から帰還しました。";
+			break;
+		case 1:
+			msg = "第3艦隊が遠征から帰還しました。";
+			break;
+		case 2:
+			msg = "第4艦隊が遠征から帰還しました。";
+			break;
+		default:
+			msg = "完了しました。";
+			break;
+		}
+		sendNotification(context, msg, n);
 	}
 
 	void vibrate(Context context) {
@@ -36,7 +55,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 	// Put the message into a notification and post it.
 	// This is just one simple example of what you might choose to do with
 	// a GCM message.
-	private void sendNotification(Context context, String msg) {
+	private void sendNotification(Context context, String msg, int n) {
 		mNotificationManager = (NotificationManager) context
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -51,7 +70,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 				.setContentText(msg);
 
 		mBuilder.setContentIntent(contentIntent);
-		mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+		mNotificationManager.notify(NOTIFICATION_ID + n, mBuilder.build());
 	}
 
 }
