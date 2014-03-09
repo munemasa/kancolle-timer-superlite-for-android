@@ -17,6 +17,7 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="jp.miku39.android.kancolletimerlite.gcm.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -62,6 +63,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/appwidget_info" />
         </receiver>
+        <receiver android:name="AlarmReceiver"></receiver>
     </application>
 
 </manifest>
