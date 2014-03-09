@@ -29,21 +29,21 @@
         android:text="@string/fleet_4" />
 
     <TextView
-        android:id="@+id/tv_fleet2_remain"
+        android:id="@+id/tv_fleet_2_remain_widget"
         android:layout_column="1"
         android:layout_gravity="left|top"
         android:layout_row="0"
         android:text="00:00:00" />
 
     <TextView
-        android:id="@+id/tv_fleet3_remain"
+        android:id="@+id/tv_fleet_3_remain_widget"
         android:layout_column="1"
         android:layout_gravity="left|top"
         android:layout_row="1"
         android:text="00:00:00" />
 
     <TextView
-        android:id="@+id/tv_fleet4_remain"
+        android:id="@+id/tv_fleet_4_remain_widget"
         android:layout_column="1"
         android:layout_gravity="left|top"
         android:layout_row="2"

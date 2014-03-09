@@ -38,6 +38,7 @@
             </intent-filter>
         </activity>
 
+        <!-- Google Cloud Messaging -->
         <receiver
             android:name="GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
@@ -63,6 +64,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/appwidget_info" />
         </receiver>
+
         <receiver android:name="AlarmReceiver"></receiver>
     </application>
 
