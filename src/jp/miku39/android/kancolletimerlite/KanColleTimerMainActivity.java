@@ -2,6 +2,7 @@ package jp.miku39.android.kancolletimerlite;
 
 import java.util.Calendar;
 
+import jp.miku39.android.common.Lib;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.DialogFragment;
@@ -126,6 +127,14 @@ public class KanColleTimerMainActivity extends Activity implements
 				startActivity(intent);
 			}
 		});
+
+		for (int i = 0; i < ids.length; i++) {
+			long t = loadTimer(i);
+			long now = System.currentTimeMillis() / 1000;
+			if (t > now) {
+				createCountDownTimer(i, t - now);
+			}
+		}
 	}
 
 	/**
@@ -165,6 +174,33 @@ public class KanColleTimerMainActivity extends Activity implements
 
 		long now = System.currentTimeMillis() / 1000;
 		setAlarm(this, now + t, n);
+
+		saveTimer(now + t, n);
+	}
+
+	/**
+	 * アラーム時刻を保存する。
+	 * 
+	 * @param t
+	 *            アラームの鳴る時刻をUNIX時間で。
+	 * @param n
+	 *            タイマーID
+	 */
+	void saveTimer(long t, int n) {
+		String key = "timer-" + n;
+		Lib.setLongValue(this, key, t);
+	}
+
+	/**
+	 * 保存していたアラーム時刻を取得する。
+	 * 
+	 * @param n
+	 *            タイマーID
+	 * @return UNIX時間でアラーム時刻を返す
+	 */
+	Long loadTimer(int n) {
+		String key = "timer-" + n;
+		return Lib.getLongValue(this, key);
 	}
 
 	/**
