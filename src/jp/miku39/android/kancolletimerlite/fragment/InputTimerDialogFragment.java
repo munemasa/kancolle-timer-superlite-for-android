@@ -1,5 +1,9 @@
-package jp.miku39.android.kancolletimerlite;
+package jp.miku39.android.kancolletimerlite.fragment;
 
+import jp.miku39.android.kancolletimerlite.R;
+import jp.miku39.android.kancolletimerlite.R.drawable;
+import jp.miku39.android.kancolletimerlite.R.id;
+import jp.miku39.android.kancolletimerlite.R.layout;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;

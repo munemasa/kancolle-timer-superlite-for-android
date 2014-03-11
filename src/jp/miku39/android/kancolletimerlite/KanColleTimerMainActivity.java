@@ -3,6 +3,7 @@ package jp.miku39.android.kancolletimerlite;
 import java.util.Calendar;
 
 import jp.miku39.android.common.Lib;
+import jp.miku39.android.kancolletimerlite.fragment.InputTimerDialogFragment;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.DialogFragment;
