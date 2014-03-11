@@ -18,7 +18,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class KanColleTimerMainActivity extends Activity {
+public class KanColleTimerMainActivity extends Activity implements
+		InputTimerDialogFragment.Callback {
 	final static String TAG = "KanColleTimerMainActivity";
 
 	CountDownTimer[] mCountDownTimer;
@@ -146,14 +147,24 @@ public class KanColleTimerMainActivity extends Activity {
 		ft.addToBackStack(null);
 
 		DialogFragment newFragment = InputTimerDialogFragment.newInstance(
-				caption[n], text);
+				caption[n], text, n);
 		newFragment.show(ft, "dialog");
 	}
 
-	void setRemainTime(int n) {
-		long t = (System.currentTimeMillis() + 5000) / 1000;
-		setAlarm(this, t, n);
-		createCountDownTimer(n, 10);
+	@Override
+	public void onReturnValue(InputTimerDialogFragment frag, String time_str,
+			int n) {
+		// 時間入力ダイアログからのコールバック
+		if (time_str.equals("0000"))
+			return;
+
+		long hours = Long.parseLong(time_str.substring(0, 2));
+		long minutes = Long.parseLong(time_str.substring(2));
+		long t = (hours * 60 + minutes) * 60;
+		createCountDownTimer(n, t);
+
+		long now = System.currentTimeMillis() / 1000;
+		setAlarm(this, now + t, n);
 	}
 
 	/**
