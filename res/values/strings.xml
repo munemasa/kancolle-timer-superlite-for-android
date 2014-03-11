@@ -13,5 +13,7 @@
     <string name="expedition">Expedition</string>
     <string name="repair">Repair</string>
     <string name="docking">Docking</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
 
 </resources>

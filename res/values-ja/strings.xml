@@ -13,5 +13,7 @@
     <string name="expedition">遠征</string>
     <string name="repair">修復</string>
     <string name="docking">入渠</string>
-
+    <string name="hours">時間</string>
+    <string name="minutes">分</string>
+    
 </resources>

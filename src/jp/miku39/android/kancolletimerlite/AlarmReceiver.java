@@ -35,6 +35,18 @@ public class AlarmReceiver extends BroadcastReceiver {
 		case 2:
 			msg = "第4艦隊が遠征から帰還しました。";
 			break;
+		case 3:
+			msg = "ドック1の艦船の修理が完了しました。";
+			break;
+		case 4:
+			msg = "ドック2の艦船の修理が完了しました。";
+			break;
+		case 5:
+			msg = "ドック3の艦船の修理が完了しました。";
+			break;
+		case 6:
+			msg = "ドック4の艦船の修理が完了しました。";
+			break;
 		default:
 			msg = "完了しました。";
 			break;

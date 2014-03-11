@@ -4,6 +4,9 @@ import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -96,13 +99,22 @@ public class KanColleTimerMainActivity extends Activity {
 	void initView() {
 		Button btn;
 
-		btn = (Button) findViewById(R.id.btn_set_fleet_2_remain);
-		btn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				setRemainTime(0);
-			};
-		});
+		int ids[] = { R.id.btn_set_fleet_2_remain, R.id.btn_set_fleet_3_remain,
+				R.id.btn_set_fleet_4_remain, R.id.btn_set_dock_1_remain,
+				R.id.btn_set_dock_2_remain, R.id.btn_set_dock_3_remain,
+				R.id.btn_set_dock_4_remain, };
+
+		for (int i = 0; i < ids.length; i++) {
+			btn = (Button) findViewById(ids[i]);
+
+			final int ii = i;
+			btn.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					enterRemainTime(ii);
+				};
+			});
+		}
 
 		btn = (Button) findViewById(R.id.btn_test);
 		btn.setOnClickListener(new OnClickListener() {
@@ -115,6 +127,29 @@ public class KanColleTimerMainActivity extends Activity {
 		});
 	}
 
+	/**
+	 * タイマーnの時間を設定する
+	 * 
+	 * @param n
+	 *            タイマーの番号
+	 */
+	void enterRemainTime(int n) {
+		String caption[] = { "第2艦隊の遠征", "第3艦隊の遠征", "第4艦隊の遠征", "ドック1の修理時間",
+				"ドック2の修理時間", "ドック3の修理時間", "ドック4の修理時間", };
+		String text = "時間を入力してください。";
+
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+		if (prev != null) {
+			ft.remove(prev);
+		}
+		ft.addToBackStack(null);
+
+		DialogFragment newFragment = InputTimerDialogFragment.newInstance(
+				caption[n], text);
+		newFragment.show(ft, "dialog");
+	}
+
 	void setRemainTime(int n) {
 		long t = (System.currentTimeMillis() + 5000) / 1000;
 		setAlarm(this, t, n);
@@ -124,7 +159,11 @@ public class KanColleTimerMainActivity extends Activity {
 	/**
 	 * アラーム時刻をUNIX時間で指定する。
 	 * 
+	 * @param context
 	 * @param t
+	 *            アラームをしかける時刻をUNIX時間で。
+	 * @param n
+	 *            タイマーの番号
 	 */
 	static void setAlarm(Context context, long t, int n) {
 		Intent intent = new Intent(context, AlarmReceiver.class);
