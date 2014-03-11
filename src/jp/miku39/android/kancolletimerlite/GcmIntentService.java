@@ -62,6 +62,10 @@ public class GcmIntentService extends IntentService {
 
 						if (tmp > now) {
 							KanColleTimerMainActivity.setAlarm(this, tmp, i);
+
+							Intent it = new Intent(Consts.ACTION_NOTIFY_GCM);
+							// it.putExtra("message", str);
+							getApplicationContext().sendBroadcast(it);
 						}
 					}
 				} catch (Exception e) {

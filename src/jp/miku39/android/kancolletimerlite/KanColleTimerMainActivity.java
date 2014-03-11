@@ -10,8 +10,10 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -24,12 +26,26 @@ public class KanColleTimerMainActivity extends Activity implements
 		InputTimerDialogFragment.Callback {
 	final static String TAG = "KanColleTimerMainActivity";
 
-	int mTimerWidgetIds[] = { R.id.btn_set_fleet_2_remain,
+	int mTimerSetButtonIds[] = { R.id.btn_set_fleet_2_remain,
 			R.id.btn_set_fleet_3_remain, R.id.btn_set_fleet_4_remain,
 			R.id.btn_set_dock_1_remain, R.id.btn_set_dock_2_remain,
 			R.id.btn_set_dock_3_remain, R.id.btn_set_dock_4_remain, };
 
 	CountDownTimer[] mCountDownTimer;
+
+	private final BroadcastReceiver mHandleGcmReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			KanColleTimerMainActivity.this.runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					// GCMでタイマー更新がやってきたときにカウントダウンタイマーの更新を行う
+					// AlarmManagerのセットはGCMレシーバー側ですでに行われているので不要
+					updateCountDownTimer();
+				}
+			});
+		}
+	};
 
 	/** Called when the activity is first created. */
 	@Override
@@ -41,12 +57,14 @@ public class KanColleTimerMainActivity extends Activity implements
 		mCountDownTimer = new CountDownTimer[7];
 
 		initView();
+
+		registerReceiver(mHandleGcmReceiver, new IntentFilter(
+				Consts.ACTION_NOTIFY_GCM));
+
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		for (int i = 0; i < mTimerWidgetIds.length; i++) {
+	void updateCountDownTimer() {
+		for (int i = 0; i < mTimerSetButtonIds.length; i++) {
 			long t = loadTimer(i);
 			long now = System.currentTimeMillis() / 1000;
 			if (t > now) {
@@ -56,7 +74,15 @@ public class KanColleTimerMainActivity extends Activity implements
 	}
 
 	@Override
+	protected void onResume() {
+		super.onResume();
+		updateCountDownTimer();
+	}
+
+	@Override
 	protected void onDestroy() {
+		unregisterReceiver(mHandleGcmReceiver);
+
 		for (int i = 0; i < mCountDownTimer.length; i++) {
 			if (mCountDownTimer[i] != null) {
 				mCountDownTimer[i].cancel();
@@ -119,8 +145,8 @@ public class KanColleTimerMainActivity extends Activity implements
 	void initView() {
 		Button btn;
 
-		for (int i = 0; i < mTimerWidgetIds.length; i++) {
-			btn = (Button) findViewById(mTimerWidgetIds[i]);
+		for (int i = 0; i < mTimerSetButtonIds.length; i++) {
+			btn = (Button) findViewById(mTimerSetButtonIds[i]);
 
 			final int ii = i;
 			btn.setOnClickListener(new OnClickListener() {
