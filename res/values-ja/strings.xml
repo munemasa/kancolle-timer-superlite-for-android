@@ -15,5 +15,6 @@
     <string name="docking">入渠</string>
     <string name="hours">時間</string>
     <string name="minutes">分</string>
-    
-</resources>
+    <string name="settings">設定</string>
+    <string name="about">About</string>
+</resources>

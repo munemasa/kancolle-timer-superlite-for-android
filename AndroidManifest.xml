@@ -66,6 +66,7 @@
         </receiver>
 
         <receiver android:name="AlarmReceiver"></receiver>
+        <activity android:name="SettingsActivity"></activity>
     </application>
 
 </manifest>
