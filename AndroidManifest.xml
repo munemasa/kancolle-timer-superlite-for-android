@@ -67,6 +67,7 @@
 
         <receiver android:name="AlarmReceiver"></receiver>
         <activity android:name="SettingsActivity"></activity>
+        <activity android:name="RegistrationActivity" android:configChanges="orientation"></activity>
     </application>
 
 </manifest>

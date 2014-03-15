@@ -17,5 +17,8 @@
     <string name="minutes">Minutes</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>
-
+    <string name="announce_gcm">Timer Synchronization with KanColle Timer for Firefox via Google Cloud Messaging.</string>
+    <string name="sync_timer_setting">Sync Setting</string>
+    <string name="register">Register</string>
+    
 </resources>

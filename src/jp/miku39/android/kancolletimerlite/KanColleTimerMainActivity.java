@@ -3,6 +3,7 @@ package jp.miku39.android.kancolletimerlite;
 import java.util.Calendar;
 
 import jp.miku39.android.common.Lib;
+import jp.miku39.android.kancolletimerlite.fragment.AboutDialogFragment;
 import jp.miku39.android.kancolletimerlite.fragment.InputTimerDialogFragment;
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -19,6 +20,7 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -267,10 +269,40 @@ public class KanColleTimerMainActivity extends Activity implements
 		Log.d(TAG, "Start Alarm!");
 	}
 
+	void showAbout() {
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+		if (prev != null) {
+			ft.remove(prev);
+		}
+		ft.addToBackStack(null);
+
+		// Create and show the dialog.
+		DialogFragment newFragment = AboutDialogFragment.newInstance();
+		newFragment.show(ft, "dialog");
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.mainmenu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_sync_timer:
+			startActivity(new Intent(this, RegistrationActivity.class));
+			break;
+
+		case R.id.menu_about:
+			showAbout();
+			break;
+
+		default:
+			return super.onMenuItemSelected(featureId, item);
+		}
 		return true;
 	}
 }

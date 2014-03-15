@@ -17,4 +17,8 @@
     <string name="minutes">分</string>
     <string name="settings">設定</string>
     <string name="about">About</string>
+    <string name="announce_gcm">Google Cloud Messagingを利用したタイマー同期を行います。</string>
+    <string name="sync_timer_setting">タイマー同期設定</string>
+    <string name="register">登録</string>
+    <string name="announce_gcm2">登録ボタンを押した後、画面に表示されたコードを艦これタイマー for Firefoxに入力してください。</string>
 </resources>
