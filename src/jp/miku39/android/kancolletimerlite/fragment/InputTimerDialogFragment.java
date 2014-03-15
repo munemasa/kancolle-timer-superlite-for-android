@@ -21,12 +21,10 @@ public class InputTimerDialogFragment extends DialogFragment {
 	int mTimerId;
 
 	public interface Callback {
-		public void onReturnValue(InputTimerDialogFragment frag,
-				String time_str, int n);
+		public void onReturnValue(InputTimerDialogFragment frag, String time_str, int n);
 	}
 
-	public static InputTimerDialogFragment newInstance(String caption,
-			String text, int n) {
+	public static InputTimerDialogFragment newInstance(String caption, String text, int n) {
 		InputTimerDialogFragment f = new InputTimerDialogFragment();
 		Bundle args = new Bundle();
 		args.putString("caption", caption);
@@ -47,8 +45,8 @@ public class InputTimerDialogFragment extends DialogFragment {
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		final View v = LayoutInflater.from(getActivity()).inflate(
-				R.layout.input_timer_layout, null);
+		final View v = LayoutInflater.from(getActivity())
+				.inflate(R.layout.input_timer_layout, null);
 
 		NumberPicker numPicker;
 		final int ids[] = { R.id.numberPicker_hour10, R.id.numberPicker_hour1,
@@ -68,29 +66,23 @@ public class InputTimerDialogFragment extends DialogFragment {
 				.setTitle(mCaption)
 				.setMessage(mText)
 				.setView(v)
-				.setPositiveButton(android.R.string.ok,
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String str = "";
-								for (int i = 0; i < ids.length; i++) {
-									NumberPicker numPicker = (NumberPicker) v
-											.findViewById(ids[i]);
-									str += numPicker.getValue();
-								}
-								((Callback) getActivity()).onReturnValue(
-										InputTimerDialogFragment.this, str,
-										mTimerId);
-								dismiss();
-							}
-						})
-				.setNegativeButton(android.R.string.cancel,
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								dismiss();
-							}
-						}).create();
+				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						String str = "";
+						for (int i = 0; i < ids.length; i++) {
+							NumberPicker numPicker = (NumberPicker) v.findViewById(ids[i]);
+							str += numPicker.getValue();
+						}
+						((Callback) getActivity()).onReturnValue(InputTimerDialogFragment.this,
+								str, mTimerId);
+						dismiss();
+					}
+				})
+				.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						dismiss();
+					}
+				}).create();
 	}
 
 }

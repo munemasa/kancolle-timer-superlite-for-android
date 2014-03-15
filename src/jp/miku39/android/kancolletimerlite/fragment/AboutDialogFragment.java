@@ -18,17 +18,13 @@ public class AboutDialogFragment extends DialogFragment {
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		String title = getString(R.string.app_name);
 
-		return new AlertDialog.Builder(getActivity())
-				.setIcon(R.drawable.ic_launcher)
-				.setTitle(title)
-				.setMessage("Developed by amano.")
-				.setPositiveButton(android.R.string.ok,
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								dismiss();
-							}
-						}).create();
+		return new AlertDialog.Builder(getActivity()).setIcon(R.drawable.ic_launcher)
+				.setTitle(title).setMessage("Developed by amano.")
+				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						dismiss();
+					}
+				}).create();
 	}
 
 }

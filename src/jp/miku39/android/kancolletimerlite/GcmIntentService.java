@@ -34,15 +34,12 @@ public class GcmIntentService extends IntentService {
 			 * ignore any message types you're not interested in, or that you
 			 * don't recognize.
 			 */
-			if (GoogleCloudMessaging.MESSAGE_TYPE_SEND_ERROR
-					.equals(messageType)) {
+			if (GoogleCloudMessaging.MESSAGE_TYPE_SEND_ERROR.equals(messageType)) {
 				Log.d(TAG, "Send error: " + extras.toString());
-			} else if (GoogleCloudMessaging.MESSAGE_TYPE_DELETED
-					.equals(messageType)) {
+			} else if (GoogleCloudMessaging.MESSAGE_TYPE_DELETED.equals(messageType)) {
 				Log.d(TAG, "Deleted messages on server: " + extras.toString());
 				// If it's a regular GCM message, do some work.
-			} else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE
-					.equals(messageType)) {
+			} else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
 
 				// TODO プッシュ通知の受信処理を行う
 				String source = extras.getString("message", "[]");
@@ -57,8 +54,7 @@ public class GcmIntentService extends IntentService {
 						timer.add(tmp);
 
 						// shared preferenceのtimer-0, timer-1, ... に完了時刻を保存する
-						Lib.setLongValue(getApplicationContext(), "timer-" + i,
-								tmp);
+						Lib.setLongValue(getApplicationContext(), "timer-" + i, tmp);
 
 						if (tmp > now) {
 							KanColleTimerMainActivity.setAlarm(this, tmp, i);

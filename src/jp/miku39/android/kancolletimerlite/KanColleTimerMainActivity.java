@@ -30,9 +30,8 @@ public class KanColleTimerMainActivity extends Activity implements
 		InputTimerDialogFragment.Callback {
 	final static String TAG = "KanColleTimerMainActivity";
 
-	int mTimerSetButtonIds[] = { R.id.btn_set_fleet_2_remain,
-			R.id.btn_set_fleet_3_remain, R.id.btn_set_fleet_4_remain,
-			R.id.btn_set_dock_1_remain, R.id.btn_set_dock_2_remain,
+	int mTimerSetButtonIds[] = { R.id.btn_set_fleet_2_remain, R.id.btn_set_fleet_3_remain,
+			R.id.btn_set_fleet_4_remain, R.id.btn_set_dock_1_remain, R.id.btn_set_dock_2_remain,
 			R.id.btn_set_dock_3_remain, R.id.btn_set_dock_4_remain, };
 
 	CountDownTimer[] mCountDownTimer;
@@ -62,8 +61,7 @@ public class KanColleTimerMainActivity extends Activity implements
 
 		initView();
 
-		registerReceiver(mHandleGcmReceiver, new IntentFilter(
-				Consts.ACTION_NOTIFY_GCM));
+		registerReceiver(mHandleGcmReceiver, new IntentFilter(Consts.ACTION_NOTIFY_GCM));
 
 	}
 
@@ -119,9 +117,8 @@ public class KanColleTimerMainActivity extends Activity implements
 	 *            カウントダウン完了までの秒数
 	 */
 	void createCountDownTimer(final int n, long t) {
-		final int ids[] = { R.id.tv_fleet_2_remain, R.id.tv_fleet_3_remain,
-				R.id.tv_fleet_4_remain, R.id.tv_dock_1_remain,
-				R.id.tv_dock_2_remain, R.id.tv_dock_3_remain,
+		final int ids[] = { R.id.tv_fleet_2_remain, R.id.tv_fleet_3_remain, R.id.tv_fleet_4_remain,
+				R.id.tv_dock_1_remain, R.id.tv_dock_2_remain, R.id.tv_dock_3_remain,
 				R.id.tv_dock_4_remain };
 
 		if (mCountDownTimer[n] != null)
@@ -165,8 +162,7 @@ public class KanColleTimerMainActivity extends Activity implements
 		btn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(KanColleTimerMainActivity.this,
-						TestActivity.class);
+				Intent intent = new Intent(KanColleTimerMainActivity.this, TestActivity.class);
 				startActivity(intent);
 			}
 		});
@@ -179,8 +175,8 @@ public class KanColleTimerMainActivity extends Activity implements
 	 *            タイマーの番号
 	 */
 	void enterRemainTime(int n) {
-		String caption[] = { "第2艦隊の遠征", "第3艦隊の遠征", "第4艦隊の遠征", "ドック1の修理時間",
-				"ドック2の修理時間", "ドック3の修理時間", "ドック4の修理時間", };
+		String caption[] = { "第2艦隊の遠征", "第3艦隊の遠征", "第4艦隊の遠征", "ドック1の修理時間", "ドック2の修理時間",
+				"ドック3の修理時間", "ドック4の修理時間", };
 		String text = "時間を入力してください。";
 
 		FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -190,14 +186,12 @@ public class KanColleTimerMainActivity extends Activity implements
 		}
 		ft.addToBackStack(null);
 
-		DialogFragment newFragment = InputTimerDialogFragment.newInstance(
-				caption[n], text, n);
+		DialogFragment newFragment = InputTimerDialogFragment.newInstance(caption[n], text, n);
 		newFragment.show(ft, "dialog");
 	}
 
 	@Override
-	public void onReturnValue(InputTimerDialogFragment frag, String time_str,
-			int n) {
+	public void onReturnValue(InputTimerDialogFragment frag, String time_str, int n) {
 		// 時間入力ダイアログからのコールバック
 		if (time_str.equals("0000"))
 			return;
@@ -250,8 +244,7 @@ public class KanColleTimerMainActivity extends Activity implements
 	static void setAlarm(Context context, long t, int n) {
 		Intent intent = new Intent(context, AlarmReceiver.class);
 		intent.setAction("timer-" + n);
-		PendingIntent sender = PendingIntent
-				.getBroadcast(context, 0, intent, 0);
+		PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
 
 		long now = System.currentTimeMillis();
 		long target = t * 1000;
@@ -261,8 +254,7 @@ public class KanColleTimerMainActivity extends Activity implements
 		calendar.setTimeInMillis(System.currentTimeMillis());
 		calendar.add(Calendar.SECOND, (int) diff);
 
-		AlarmManager am = (AlarmManager) context
-				.getSystemService(Context.ALARM_SERVICE);
+		AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 		// one shot
 		am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
 
