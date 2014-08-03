@@ -20,7 +20,14 @@
     <string name="announce_gcm">Google Cloud Messagingを利用したタイマー同期を行います。</string>
     <string name="sync_timer_setting">タイマー同期設定</string>
     <string name="register">登録</string>
-    <string name="announce_gcm2">登録後、ユーザー名とパスコードを艦これタイマー for Firefoxに入力してください。</string>
-    <string name="username">ユーザー名</string>
-    <string name="passcode">パスコード</string>
-</resources>
+    <string name="announce_gcm2">登録後、キー１とキー２を艦これタイマー for Firefoxに入力してください。</string>
+    <string name="username">キー１</string>
+    <string name="passcode">キー２</string>
+    <string name="registered">登録しました</string>
+    <string name="failed_to_register">登録に失敗しました</string>
+    <string name="notify_sound">サウンド</string>
+    <string name="notify_sound_summary">サウンドで通知する</string>
+    <string name="notify_vibration">バイブレーション</string>
+    <string name="notify_vibration_summary">バイブレーションで通知する</string>
+
+</resources>

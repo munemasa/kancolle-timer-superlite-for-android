@@ -20,8 +20,14 @@
     <string name="announce_gcm">Timer Synchronization with KanColle Timer for Firefox via Google Cloud Messaging.</string>
     <string name="sync_timer_setting">Sync Setting</string>
     <string name="register">Register</string>
-    <string name="announce_gcm2">Please enter your username and passcode to KanColle Timer for Firefox after registration.</string>
-    <string name="username">Username</string>
-    <string name="passcode">Passcode</string>
+    <string name="announce_gcm2">Please enter your Key 1 and Key 2 to KanColle Timer for Firefox after registration.</string>
+    <string name="username">Key 1</string>
+    <string name="passcode">Key 2</string>
+    <string name="registered">Register successful</string>
+    <string name="failed_to_register">Failed to Register</string>
+    <string name="notify_sound">Sound</string>
+    <string name="notify_sound_summary">Notify by Sound</string>
+    <string name="notify_vibration">Vibration</string>
+    <string name="notify_vibration_summary">Notify by Vibratiion</string>
 
 </resources>

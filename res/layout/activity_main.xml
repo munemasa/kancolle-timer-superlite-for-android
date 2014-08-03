@@ -154,10 +154,4 @@
             android:text="@string/set" />
     </GridLayout>
 
-    <Button
-        android:id="@+id/btn_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test" />
-
 </LinearLayout>

@@ -1,6 +1,7 @@
 package jp.miku39.android.kancolletimerlite;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +11,12 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -17,9 +24,13 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 public class RegistrationActivity extends Activity {
 	final static String TAG = "RegistrationActivity";
+	private static String sRegisterUrl = "http://kancolletimer-gae.appspot.com/gcm/register";
 
 	private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 	public static final String PROPERTY_REG_ID = "registration_id";
+	public static final String PROPERTY_KEY_1 = "key1";
+	public static final String PROPERTY_KEY_2 = "key2";
+
 	private static final String PROPERTY_APP_VERSION = "appVersion";
 
 	GoogleCloudMessaging mGcm;
@@ -27,6 +38,7 @@ public class RegistrationActivity extends Activity {
 	Context mContext;
 	String mSenderId;
 	String mGcmRegistrationId;
+	String mKey1, mKey2;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -38,16 +50,38 @@ public class RegistrationActivity extends Activity {
 		mSenderId = getString(R.string.gcm_sender_id);
 		mContext = this;
 
-		if (checkPlayServices()) {
-			Log.d(TAG, "Ready to use Google Play services.");
-			mGcm = GoogleCloudMessaging.getInstance(this);
-			mGcmRegistrationId = getRegistrationId(mContext);
+		final SharedPreferences prefs = getGCMPreferences(this);
+		String key1 = prefs.getString(PROPERTY_KEY_1, "");
+		String key2 = prefs.getString(PROPERTY_KEY_2, "");
 
-			if (mGcmRegistrationId.isEmpty()) {
-				registerInBackground();
+		EditText et;
+		et = (EditText) findViewById(R.id.edit_key1);
+		et.setText(key1);
+		et = (EditText) findViewById(R.id.edit_key2);
+		et.setText(key2);
+
+		Button btn = (Button) findViewById(R.id.btn_register);
+		btn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (checkPlayServices()) {
+					Log.d(TAG, "Ready to use Google Play services.");
+					mGcm = GoogleCloudMessaging.getInstance(RegistrationActivity.this);
+					mGcmRegistrationId = getRegistrationId(mContext);
+
+					EditText et = (EditText) findViewById(R.id.edit_key1);
+					mKey1 = et.getEditableText().toString();
+					et = (EditText) findViewById(R.id.edit_key2);
+					mKey2 = et.getEditableText().toString();
+
+					registerInBackground();
+
+					InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+					imm.hideSoftInputFromWindow(v.getWindowToken(),
+							InputMethodManager.HIDE_NOT_ALWAYS);
+				}
 			}
-
-		}
+		});
 
 	}
 
@@ -111,7 +145,8 @@ public class RegistrationActivity extends Activity {
 		// This sample app persists the registration ID in shared preferences,
 		// but
 		// how you store the regID in your app is up to you.
-		return getSharedPreferences(TestActivity.class.getSimpleName(), Context.MODE_PRIVATE);
+		return getSharedPreferences(KanColleTimerMainActivity.class.getSimpleName(),
+				Context.MODE_PRIVATE);
 	}
 
 	/**
@@ -201,8 +236,38 @@ public class RegistrationActivity extends Activity {
 	 * message using the 'from' address in the message.
 	 */
 	private void sendRegistrationIdToBackend() {
-		// TODO Your implementation here.
 		Log.d(TAG, "GCM Registration Id: " + mGcmRegistrationId);
+
+		HashMap<String, String> form = new HashMap<String, String>();
+		form.put("key1", mKey1);
+		form.put("key2", mKey2);
+		form.put("registration_id", mGcmRegistrationId);
+		String ret = Http.postRequest(sRegisterUrl, form);
+
+		Log.d(TAG, ret);
+		if (ret.contains("OK")) {
+			final SharedPreferences prefs = getGCMPreferences(RegistrationActivity.this);
+			SharedPreferences.Editor editor = prefs.edit();
+			editor.putString(PROPERTY_KEY_1, mKey1);
+			editor.putString(PROPERTY_KEY_2, mKey2);
+			editor.commit();
+
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					Toast.makeText(RegistrationActivity.this, R.string.registered,
+							Toast.LENGTH_LONG).show();
+				}
+			});
+		} else {
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					Toast.makeText(RegistrationActivity.this, R.string.failed_to_register,
+							Toast.LENGTH_LONG).show();
+				}
+			});
+		}
 	}
 
 }

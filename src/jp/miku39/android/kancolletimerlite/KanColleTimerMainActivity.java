@@ -158,14 +158,14 @@ public class KanColleTimerMainActivity extends Activity implements
 			});
 		}
 
-		btn = (Button) findViewById(R.id.btn_test);
-		btn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(KanColleTimerMainActivity.this, TestActivity.class);
-				startActivity(intent);
-			}
-		});
+//		btn = (Button) findViewById(R.id.btn_test);
+//		btn.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				Intent intent = new Intent(KanColleTimerMainActivity.this, TestActivity.class);
+//				startActivity(intent);
+//			}
+//		});
 	}
 
 	/**
