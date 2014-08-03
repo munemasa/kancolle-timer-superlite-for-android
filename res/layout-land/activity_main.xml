@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
+    android:gravity="center_horizontal"
     android:orientation="horizontal"
     tools:context="jp.miku39.android.kancolletimerlite.MainActivity"
     tools:ignore="MergeRootFrame" >
@@ -165,11 +166,5 @@
                 android:text="@string/set" />
         </GridLayout>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test" />
 
 </LinearLayout>

@@ -4,154 +4,161 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context="jp.miku39.android.kancolletimerlite.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <TextView
-        android:id="@+id/textView1"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/expedition" />
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:columnCount="3"
-        android:rowCount="3" >
+        android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/tv_sync_token"
-            android:layout_column="0"
-            android:layout_gravity="left"
-            android:layout_marginRight="16dp"
-            android:layout_row="0"
-            android:text="@string/fleet_2" />
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/expedition" />
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:columnCount="3"
+            android:rowCount="3" >
+
+            <TextView
+                android:id="@+id/tv_sync_token"
+                android:layout_column="0"
+                android:layout_gravity="left"
+                android:layout_marginRight="16dp"
+                android:layout_row="0"
+                android:text="@string/fleet_2" />
+
+            <TextView
+                android:id="@+id/tv_fleet_2_remain"
+                android:layout_gravity="left"
+                android:layout_marginRight="16dp"
+                android:text="00:00:00" />
+
+            <Button
+                android:id="@+id/btn_set_fleet_2_remain"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_gravity="left"
+                android:text="@string/set" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_gravity="left"
+                android:text="@string/fleet_3" />
+
+            <TextView
+                android:id="@+id/tv_fleet_3_remain"
+                android:layout_gravity="left"
+                android:text="00:00:00" />
+
+            <Button
+                android:id="@+id/btn_set_fleet_3_remain"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_gravity="left"
+                android:text="@string/set" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_gravity="left"
+                android:text="@string/fleet_4" />
+
+            <TextView
+                android:id="@+id/tv_fleet_4_remain"
+                android:layout_gravity="left"
+                android:text="00:00:00" />
+
+            <Button
+                android:id="@+id/btn_set_fleet_4_remain"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_gravity="left"
+                android:text="@string/set" />
+        </GridLayout>
 
         <TextView
-            android:id="@+id/tv_fleet_2_remain"
-            android:layout_gravity="left"
-            android:layout_marginRight="16dp"
-            android:text="00:00:00" />
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/docking" />
 
-        <Button
-            android:id="@+id/btn_set_fleet_2_remain"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_gravity="left"
-            android:text="@string/set" />
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:columnCount="3"
+            android:rowCount="4" >
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_gravity="left"
-            android:text="@string/fleet_3" />
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_gravity="left"
+                android:layout_marginRight="16dp"
+                android:text="@string/dock_1" />
 
-        <TextView
-            android:id="@+id/tv_fleet_3_remain"
-            android:layout_gravity="left"
-            android:text="00:00:00" />
+            <TextView
+                android:id="@+id/tv_dock_1_remain"
+                android:layout_gravity="left"
+                android:layout_marginRight="16dp"
+                android:text="00:00:00" />
 
-        <Button
-            android:id="@+id/btn_set_fleet_3_remain"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_gravity="left"
-            android:text="@string/set" />
+            <Button
+                android:id="@+id/btn_set_dock_1_remain"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_gravity="left"
+                android:text="@string/set" />
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_gravity="left"
-            android:text="@string/fleet_4" />
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_gravity="left"
+                android:text="@string/dock_2" />
 
-        <TextView
-            android:id="@+id/tv_fleet_4_remain"
-            android:layout_gravity="left"
-            android:text="00:00:00" />
+            <TextView
+                android:id="@+id/tv_dock_2_remain"
+                android:layout_gravity="left"
+                android:text="00:00:00" />
 
-        <Button
-            android:id="@+id/btn_set_fleet_4_remain"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_gravity="left"
-            android:text="@string/set" />
-    </GridLayout>
+            <Button
+                android:id="@+id/btn_set_dock_2_remain"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_gravity="left"
+                android:text="@string/set" />
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/docking" />
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_gravity="left"
+                android:text="@string/dock_3" />
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:columnCount="3"
-        android:rowCount="4" >
+            <TextView
+                android:id="@+id/tv_dock_3_remain"
+                android:layout_gravity="left"
+                android:text="00:00:00" />
 
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_gravity="left"
-            android:layout_marginRight="16dp"
-            android:text="@string/dock_1" />
+            <Button
+                android:id="@+id/btn_set_dock_3_remain"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_gravity="left"
+                android:text="@string/set" />
 
-        <TextView
-            android:id="@+id/tv_dock_1_remain"
-            android:layout_gravity="left"
-            android:layout_marginRight="16dp"
-            android:text="00:00:00" />
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_gravity="left"
+                android:text="@string/dock_4" />
 
-        <Button
-            android:id="@+id/btn_set_dock_1_remain"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_gravity="left"
-            android:text="@string/set" />
+            <TextView
+                android:id="@+id/tv_dock_4_remain"
+                android:layout_gravity="left"
+                android:text="00:00:00" />
 
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_gravity="left"
-            android:text="@string/dock_2" />
-
-        <TextView
-            android:id="@+id/tv_dock_2_remain"
-            android:layout_gravity="left"
-            android:text="00:00:00" />
-
-        <Button
-            android:id="@+id/btn_set_dock_2_remain"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_gravity="left"
-            android:text="@string/set" />
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_gravity="left"
-            android:text="@string/dock_3" />
-
-        <TextView
-            android:id="@+id/tv_dock_3_remain"
-            android:layout_gravity="left"
-            android:text="00:00:00" />
-
-        <Button
-            android:id="@+id/btn_set_dock_3_remain"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_gravity="left"
-            android:text="@string/set" />
-
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_gravity="left"
-            android:text="@string/dock_4" />
-
-        <TextView
-            android:id="@+id/tv_dock_4_remain"
-            android:layout_gravity="left"
-            android:text="00:00:00" />
-
-        <Button
-            android:id="@+id/btn_set_dock_4_remain"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_gravity="left"
-            android:text="@string/set" />
-    </GridLayout>
+            <Button
+                android:id="@+id/btn_set_dock_4_remain"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_gravity="left"
+                android:text="@string/set" />
+        </GridLayout>
+    </LinearLayout>
 
 </LinearLayout>
