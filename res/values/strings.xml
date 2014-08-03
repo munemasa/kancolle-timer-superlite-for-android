@@ -29,5 +29,6 @@
     <string name="notify_sound_summary">Notify by Sound</string>
     <string name="notify_vibration">Vibration</string>
     <string name="notify_vibration_summary">Notify by Vibratiion</string>
+    <string name="notification">Notification</string>
 
 </resources>

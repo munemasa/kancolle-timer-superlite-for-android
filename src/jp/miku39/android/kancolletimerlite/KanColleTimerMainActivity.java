@@ -15,8 +15,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -62,17 +64,6 @@ public class KanColleTimerMainActivity extends Activity implements
 		initView();
 
 		registerReceiver(mHandleGcmReceiver, new IntentFilter(Consts.ACTION_NOTIFY_GCM));
-
-	}
-
-	void updateCountDownTimer() {
-		for (int i = 0; i < mTimerSetButtonIds.length; i++) {
-			long t = loadTimer(i);
-			long now = System.currentTimeMillis() / 1000;
-			if (t > now) {
-				createCountDownTimer(i, t - now);
-			}
-		}
 	}
 
 	@Override
@@ -94,6 +85,36 @@ public class KanColleTimerMainActivity extends Activity implements
 	}
 
 	/**
+	 * Viewの初期設定を行う
+	 */
+	void initView() {
+		Button btn;
+
+		for (int i = 0; i < mTimerSetButtonIds.length; i++) {
+			btn = (Button) findViewById(mTimerSetButtonIds[i]);
+
+			final int ii = i;
+			btn.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					enterRemainTime(ii);
+				};
+			});
+		}
+	}
+
+	/**
+	 * 設定から真偽値を取得する
+	 * 
+	 * @param key
+	 * @return
+	 */
+	boolean getPrefBool(String key) {
+		SharedPreferences spf = PreferenceManager.getDefaultSharedPreferences(this);
+		return spf.getBoolean(key, false);
+	}
+
+	/**
 	 * 指定のTextViewに残り時間の文字列を設定する。
 	 * 
 	 * @param tv
@@ -106,6 +127,19 @@ public class KanColleTimerMainActivity extends Activity implements
 		String m = min < 10 ? "0" + min : min.toString();
 		String s = sec < 10 ? "0" + sec : sec.toString();
 		tv.setText(h + ":" + m + ":" + s);
+	}
+
+	/**
+	 * タイマー設定を更新する
+	 */
+	void updateCountDownTimer() {
+		for (int i = 0; i < mTimerSetButtonIds.length; i++) {
+			long t = loadTimer(i);
+			long now = System.currentTimeMillis() / 1000;
+			if (t > now) {
+				createCountDownTimer(i, t - now);
+			}
+		}
 	}
 
 	/**
@@ -141,31 +175,6 @@ public class KanColleTimerMainActivity extends Activity implements
 				tv.setText("Finished!");
 			}
 		}.start();
-	}
-
-	void initView() {
-		Button btn;
-
-		for (int i = 0; i < mTimerSetButtonIds.length; i++) {
-			btn = (Button) findViewById(mTimerSetButtonIds[i]);
-
-			final int ii = i;
-			btn.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					enterRemainTime(ii);
-				};
-			});
-		}
-
-//		btn = (Button) findViewById(R.id.btn_test);
-//		btn.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				Intent intent = new Intent(KanColleTimerMainActivity.this, TestActivity.class);
-//				startActivity(intent);
-//			}
-//		});
 	}
 
 	/**
@@ -261,6 +270,9 @@ public class KanColleTimerMainActivity extends Activity implements
 		Log.d(TAG, "Start Alarm!");
 	}
 
+	/**
+	 * Aboutダイアログを表示
+	 */
 	void showAbout() {
 		FragmentTransaction ft = getFragmentManager().beginTransaction();
 		Fragment prev = getFragmentManager().findFragmentByTag("dialog");
@@ -272,6 +284,14 @@ public class KanColleTimerMainActivity extends Activity implements
 		// Create and show the dialog.
 		DialogFragment newFragment = AboutDialogFragment.newInstance();
 		newFragment.show(ft, "dialog");
+	}
+
+	/**
+	 * 設定アクティビティを表示
+	 */
+	void showPreferences() {
+		Intent intent = new Intent(this, PreferenceActivity.class);
+		startActivity(intent);
 	}
 
 	@Override
@@ -286,6 +306,10 @@ public class KanColleTimerMainActivity extends Activity implements
 		switch (item.getItemId()) {
 		case R.id.menu_sync_timer:
 			startActivity(new Intent(this, RegistrationActivity.class));
+			break;
+
+		case R.id.menu_settings:
+			showPreferences();
 			break;
 
 		case R.id.menu_about:

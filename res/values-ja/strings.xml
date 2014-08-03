@@ -29,5 +29,6 @@
     <string name="notify_sound_summary">サウンドで通知する</string>
     <string name="notify_vibration">バイブレーション</string>
     <string name="notify_vibration_summary">バイブレーションで通知する</string>
-
+    <string name="notification">通知</string>
+    
 </resources>
