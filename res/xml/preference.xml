@@ -2,5 +2,7 @@
     <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
         
         
-        <PreferenceCategory android:title="@string/notification"><CheckBoxPreference android:title="@string/notify_sound" android:summary="@string/notify_sound_summary" android:key="notify_sound" /><CheckBoxPreference android:summary="@string/notify_vibration_summary" android:title="@string/notify_vibration" android:key="notify_vibration" /></PreferenceCategory>
+        <PreferenceCategory android:title="@string/notification"><CheckBoxPreference android:title="@string/notify_sound" android:summary="@string/notify_sound_summary" android:key="notify_sound" /><CheckBoxPreference android:summary="@string/notify_vibration_summary" android:title="@string/notify_vibration" android:key="notify_vibration" />
+        <CheckBoxPreference android:key="notify_light" android:title="@string/notify_light" android:summary="@string/notify_light_summary"/>
+</PreferenceCategory>
     </PreferenceScreen>

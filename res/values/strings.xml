@@ -25,10 +25,12 @@
     <string name="passcode">Key 2</string>
     <string name="registered">Register successful</string>
     <string name="failed_to_register">Failed to Register</string>
+    <string name="notification">Notification</string>
     <string name="notify_sound">Sound</string>
     <string name="notify_sound_summary">Notify by Sound</string>
     <string name="notify_vibration">Vibration</string>
     <string name="notify_vibration_summary">Notify by Vibratiion</string>
-    <string name="notification">Notification</string>
+    <string name="notify_light">Light</string>
+    <string name="notify_light_summary">Notify by Lights</string>
 
 </resources>

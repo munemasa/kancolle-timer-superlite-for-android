@@ -1,5 +1,7 @@
 package jp.miku39.android.kancolletimerlite;
 
+import jp.miku39.android.common.Lib;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -17,7 +19,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		vibrate(context);
+		//vibrate(context);
 
 		// AlarmのActionは"timer-X"となっている
 		String action = intent.getAction();
@@ -56,6 +58,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 	void vibrate(Context context) {
 		try {
+			if( !Lib.getPrefBool(context, "notify_vibration") ) return;
+
 			Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 			long[] pattern = { 250, 1000, 500, 1000, 500, 1000 };
 			vibrator.vibrate(pattern, -1);
@@ -79,7 +83,24 @@ public class AlarmReceiver extends BroadcastReceiver {
 				.setStyle(new NotificationCompat.BigTextStyle().bigText(msg)).setContentText(msg);
 
 		mBuilder.setContentIntent(contentIntent);
-		mNotificationManager.notify(NOTIFICATION_ID + n, mBuilder.build());
+		Notification notification = mBuilder.build();
+		
+		if( Lib.getPrefBool(context, "notify_sound") ){
+			notification.defaults |= Notification.DEFAULT_SOUND;
+		}
+		if( Lib.getPrefBool(context, "notify_vibration") ){
+			notification.defaults |= Notification.DEFAULT_VIBRATE;
+		}
+		if( Lib.getPrefBool(context, "notify_light") ){
+			// デバイス次第か？（自分の端末だと光らない）
+			notification.defaults |= Notification.DEFAULT_LIGHTS;
+			notification.flags |= Notification.FLAG_SHOW_LIGHTS;
+			notification.ledARGB = 0xff00ff00;
+			notification.ledOnMS = 300;
+			notification.ledOffMS = 1000;
+		}
+
+		mNotificationManager.notify(NOTIFICATION_ID + n, notification);
 	}
 
 }

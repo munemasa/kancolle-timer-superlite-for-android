@@ -15,10 +15,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -101,17 +99,6 @@ public class KanColleTimerMainActivity extends Activity implements
 				};
 			});
 		}
-	}
-
-	/**
-	 * 設定から真偽値を取得する
-	 * 
-	 * @param key
-	 * @return
-	 */
-	boolean getPrefBool(String key) {
-		SharedPreferences spf = PreferenceManager.getDefaultSharedPreferences(this);
-		return spf.getBoolean(key, false);
 	}
 
 	/**
