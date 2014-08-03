@@ -84,7 +84,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 		mBuilder.setContentIntent(contentIntent);
 		Notification notification = mBuilder.build();
-		
+
 		if( Lib.getPrefBool(context, "notify_sound") ){
 			notification.defaults |= Notification.DEFAULT_SOUND;
 		}

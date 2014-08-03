@@ -16,7 +16,7 @@
         android:text="@string/fleet_2" />
 
     <TextView
-        android:id="@+id/tv_sync_token"
+        android:id="@+id/textView2"
         android:layout_column="0"
         android:layout_gravity="left|top"
         android:layout_row="1"
@@ -33,7 +33,7 @@
         android:layout_column="1"
         android:layout_gravity="left|top"
         android:layout_row="0"
-        android:text="00:00:00" />
+        android:text="Widget is Now In Development" />
 
     <TextView
         android:id="@+id/tv_fleet_3_remain_widget"

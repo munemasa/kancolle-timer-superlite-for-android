@@ -31,7 +31,6 @@ public class KanColleTimerAppWidgetProvider extends AppWidgetProvider {
 			// Tell the AppWidgetManager to perform an update on the current
 			// app widget
 			appWidgetManager.updateAppWidget(appWidgetId, views);
-
 		}
 	}
 }
