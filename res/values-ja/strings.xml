@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">艦これタイマーLite</string>
+    <string name="app_name">艦これタイマーSuperLite</string>
     <string name="fleet_2">第2艦隊</string>
     <string name="fleet_3">第3艦隊</string>
     <string name="fleet_4">第4艦隊</string>
@@ -20,7 +20,7 @@
     <string name="announce_gcm">Google Cloud Messagingを利用したタイマー同期を行います。</string>
     <string name="sync_timer_setting">タイマー同期設定</string>
     <string name="register">登録</string>
-    <string name="announce_gcm2">登録後、キー１とキー２を艦これタイマー for Firefoxに入力してください。</string>
+    <string name="announce_gcm2">キー１、キー２を端末の識別に使用します。登録完了後、艦これタイマー for Firefoxにそれぞれを設定してください。</string>
     <string name="username">キー１</string>
     <string name="passcode">キー２</string>
     <string name="registered">登録しました</string>
@@ -32,5 +32,6 @@
     <string name="notify_vibration_summary">バイブレーションで通知する</string>
     <string name="notify_light">ライト</string>
     <string name="notify_light_summary">ライトで通知する</string>
+    <string name="caution_message">※キー１、キー２の両方が他の利用者と重複してしまった場合、後から登録処理を行った利用者のものが優先されますので、できるだけ複雑な文字列にしてください。</string>
     
 </resources>

@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">KanColleTimerLite</string>
+    <string name="app_name">KanColleTimer SuperLite</string>
     <string name="gcm_sender_id">424903963924</string>
     <string name="fleet_2">Fleet 2</string>
     <string name="fleet_3">Fleet 3</string>
@@ -32,5 +32,6 @@
     <string name="notify_vibration_summary">Notify by Vibratiion</string>
     <string name="notify_light">Light</string>
     <string name="notify_light_summary">Notify by Lights</string>
-
+    <string name="caution_message">If Key 1 and Key 2 are same with other users, last registered user is preferred.</string>
+    
 </resources>

@@ -92,7 +92,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 			notification.defaults |= Notification.DEFAULT_VIBRATE;
 		}
 		if( Lib.getPrefBool(context, "notify_light") ){
-			// デバイス次第か？（自分の端末だと光らない）
+			// デバイス次第か？
 			notification.defaults |= Notification.DEFAULT_LIGHTS;
 			notification.flags |= Notification.FLAG_SHOW_LIGHTS;
 			notification.ledARGB = 0xff00ff00;
