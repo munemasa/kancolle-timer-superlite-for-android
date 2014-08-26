@@ -33,6 +33,8 @@ public class KanColleTimerMainActivity extends Activity implements
 	int mTimerSetButtonIds[] = { R.id.btn_set_fleet_2_remain, R.id.btn_set_fleet_3_remain,
 			R.id.btn_set_fleet_4_remain, R.id.btn_set_dock_1_remain, R.id.btn_set_dock_2_remain,
 			R.id.btn_set_dock_3_remain, R.id.btn_set_dock_4_remain, };
+	int mTimerCancelButtonIds[] = { R.id.btn_cancel_1, R.id.btn_cancel_2, R.id.btn_cancel_3,
+			R.id.btn_cancel_4, R.id.btn_cancel_5, R.id.btn_cancel_6, R.id.btn_cancel_7 };
 
 	CountDownTimer[] mCountDownTimer;
 
@@ -99,6 +101,31 @@ public class KanColleTimerMainActivity extends Activity implements
 				};
 			});
 		}
+
+		for (int i = 0; i < mTimerCancelButtonIds.length; i++) {
+			btn = (Button) findViewById(mTimerCancelButtonIds[i]);
+
+			final int ii = i;
+			btn.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					cancelTimer(ii);
+				};
+			});
+		}
+	}
+
+	void cancelTimer(int n) {
+		if (mCountDownTimer[n] != null)
+			mCountDownTimer[n].cancel();
+
+		final int ids[] = { R.id.tv_fleet_2_remain, R.id.tv_fleet_3_remain, R.id.tv_fleet_4_remain,
+				R.id.tv_dock_1_remain, R.id.tv_dock_2_remain, R.id.tv_dock_3_remain,
+				R.id.tv_dock_4_remain };
+		TextView tv = (TextView) findViewById(ids[n]);
+		tv.setText("00:00:00");
+
+		saveTimer(0, n);
 	}
 
 	/**

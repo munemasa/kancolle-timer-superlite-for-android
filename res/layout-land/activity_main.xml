@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:columnCount="3"
+                android:columnCount="4"
                 android:rowCount="3" >
 
                 <TextView
@@ -51,6 +51,11 @@
                     android:layout_gravity="left"
                     android:text="@string/set" />
 
+                <Button
+                    android:id="@+id/btn_cancel_1"
+                    android:layout_gravity="left"
+                    android:text="@string/cancel" />
+
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_gravity="left"
@@ -67,6 +72,11 @@
                     android:layout_gravity="left"
                     android:text="@string/set" />
 
+                <Button
+                    android:id="@+id/btn_cancel_2"
+                    android:layout_gravity="left"
+                    android:text="@string/cancel" />
+
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_gravity="left"
@@ -82,6 +92,12 @@
                     style="?android:attr/buttonStyleSmall"
                     android:layout_gravity="left"
                     android:text="@string/set" />
+
+                <Button
+                    android:id="@+id/btn_cancel_3"
+                    android:layout_gravity="left"
+                    android:text="@string/cancel" />
+
             </GridLayout>
         </LinearLayout>
 
@@ -100,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:columnCount="3"
+                android:columnCount="4"
                 android:rowCount="4" >
 
                 <TextView
@@ -121,6 +137,11 @@
                     android:layout_gravity="left"
                     android:text="@string/set" />
 
+                <Button
+                    android:id="@+id/btn_cancel_4"
+                    android:layout_gravity="left"
+                    android:text="@string/cancel" />
+
                 <TextView
                     android:id="@+id/textView10"
                     android:layout_gravity="left"
@@ -136,6 +157,11 @@
                     style="?android:attr/buttonStyleSmall"
                     android:layout_gravity="left"
                     android:text="@string/set" />
+
+                <Button
+                    android:id="@+id/btn_cancel_5"
+                    android:layout_gravity="left"
+                    android:text="@string/cancel" />
 
                 <TextView
                     android:id="@+id/textView12"
@@ -153,6 +179,11 @@
                     android:layout_gravity="left"
                     android:text="@string/set" />
 
+                <Button
+                    android:id="@+id/btn_cancel_6"
+                    android:layout_gravity="left"
+                    android:text="@string/cancel" />
+
                 <TextView
                     android:id="@+id/textView14"
                     android:layout_gravity="left"
@@ -168,6 +199,12 @@
                     style="?android:attr/buttonStyleSmall"
                     android:layout_gravity="left"
                     android:text="@string/set" />
+
+                <Button
+                    android:id="@+id/btn_cancel_7"
+                    android:layout_gravity="left"
+                    android:text="@string/cancel" />
+
             </GridLayout>
         </LinearLayout>
     </LinearLayout>

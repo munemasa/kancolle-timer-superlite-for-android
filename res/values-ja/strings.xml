@@ -32,6 +32,7 @@
     <string name="notify_vibration_summary">バイブレーションで通知する</string>
     <string name="notify_light">ライト</string>
     <string name="notify_light_summary">ライトで通知する</string>
-    <string name="caution_message">※キー１、キー２の両方が他の利用者と重複してしまった場合、後から登録処理を行った利用者のものが優先されますので、できるだけ複雑な文字列にしてください。</string>
+    <string name="caution_message">※キー１、キー２の両方が他の利用者と重複してしまった場合、後から登録処理を行った利用者のものが優先されますので、できるだけ複雑な文字列にして重複しにくいようにしてください。</string>
+    <string name="cancel">取消</string>
     
 </resources>

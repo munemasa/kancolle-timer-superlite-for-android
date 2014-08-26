@@ -33,5 +33,6 @@
     <string name="notify_light">Light</string>
     <string name="notify_light_summary">Notify by Lights</string>
     <string name="caution_message">If Key 1 and Key 2 are same with other users, last registered user is preferred.</string>
+    <string name="cancel">Cancel</string>
     
 </resources>
