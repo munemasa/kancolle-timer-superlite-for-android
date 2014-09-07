@@ -126,6 +126,12 @@ public class KanColleTimerMainActivity extends Activity implements
 		tv.setText("00:00:00");
 
 		saveTimer(0, n);
+
+		Intent intent = new Intent(this, AlarmReceiver.class);
+		intent.setAction("timer-" + n);
+		PendingIntent sender = PendingIntent.getBroadcast(this, 0, intent, 0);
+		AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+		am.cancel(sender);
 	}
 
 	/**
